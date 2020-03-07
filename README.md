@@ -1,5 +1,7 @@
 # README
 
+[Bookmark](https://guides.rubyonrails.org/v5.1/getting_started.html#updating-articles)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
