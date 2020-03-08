@@ -11,6 +11,11 @@ ns.resources.add config
 class ::Admin::ArticlesController < ActiveAdmin::ResourceController; end
 Admin::ArticlesController.active_admin_config = config
 
-# TODO: Namespace.parse_registration_block type functionality here
+# Namespace.parse_registration_block type functionality here
+config.dsl = ActiveAdmin::ResourceDSL.new(config)
+block = Proc.new do
+  menu label: 'My Articles', priority: 1
+end
+config.dsl.run_registration_block(&block)
 
 # TODO: Namespace.reset_menu! type functionality here
