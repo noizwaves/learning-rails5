@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   namespace :admin, as: :admin do
-    resources 'articles', only: [:index, :show, :destroy, :new, :create, :update, :edit] do
+    resources :articles, only: [:index, :show, :destroy, :new, :create, :update, :edit] do
       collection do
         post :batch_action
       end
