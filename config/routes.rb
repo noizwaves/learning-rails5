@@ -1,16 +1,22 @@
+require 'ruby-prof'
+
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  RubyProf.start
   ActiveAdmin.routes(self)
+  result = RubyProf.stop
+  printer = RubyProf::CallTreePrinter.new(result)
+  printer.print()
 
-  namespace :admin, as: :admin do
-    resources :articles, only: [:index, :show, :destroy, :new, :create, :update, :edit] do
-      collection do
-        post :batch_action
-      end
-    end
-  end
+  # namespace :admin, as: :admin do
+  #   resources :articles, only: [:index, :show, :destroy, :new, :create, :update, :edit] do
+  #     collection do
+  #       post :batch_action
+  #     end
+  #   end
+  # end
 
   get 'welcome/index'
 
