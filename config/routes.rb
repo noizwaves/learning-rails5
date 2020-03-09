@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  RubyProf.start
-  ActiveAdmin.routes(self)
-  result = RubyProf.stop
-  printer = RubyProf::CallTreePrinter.new(result)
+  profile = RubyProf.profile do
+    ActiveAdmin.routes(self)
+  end
+  printer = RubyProf::CallTreePrinter.new(profile)
   printer.print()
 
   # namespace :admin, as: :admin do
