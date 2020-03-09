@@ -18,4 +18,5 @@ block = Proc.new do
 end
 config.dsl.run_registration_block(&block)
 
-# TODO: Namespace.reset_menu! type functionality here
+# Namespace.reset_menu! type functionality here
+ns.reset_menu!
