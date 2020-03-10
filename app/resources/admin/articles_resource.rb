@@ -23,6 +23,13 @@ class ::Admin::ArticlesResource
 
       # Declarative definition of resource here
       @@lazy_resource.menu_item_options = { label: 'My Articles', priority: 1 }
+
+      # # Alternatively, run the declarative changes in the original imperative DSL:
+      # @@lazy_resource.dsl = ActiveAdmin::ResourceDSL.new(@@lazy_resource)
+      # block = Proc.new do
+      #   menu label: 'My Articles', priority: 1
+      # end
+      # @@lazy_resource.dsl.run_registration_block(&block)
     end
     @@lazy_resource
   end
