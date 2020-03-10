@@ -19,4 +19,8 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
+
+  # Build the menu (run when routes are defined)
+  admin = ActiveAdmin.application.namespace(:admin)
+  admin.resources.add Admin::ArticlesResource.resource
 end
