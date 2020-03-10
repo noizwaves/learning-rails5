@@ -9,7 +9,6 @@ class ::Admin::ArticlesResource
       @@resource.dsl = ActiveAdmin::ResourceDSL.new(@@resource)
       block = Proc.new do
         # Imperative definition of resource here
-        menu label: 'My Articles', priority: 1
       end
       @@resource.dsl.run_registration_block(&block)
     end
@@ -21,7 +20,9 @@ class ::Admin::ArticlesResource
       ns = ActiveAdmin.application.namespace(:admin)
 
       @@lazy_resource = ActiveAdmin::Resource.new(ns, Article, {})
-      # TODO: Declarative definition of resource here
+
+      # Declarative definition of resource here
+      @@lazy_resource.menu_item_options = { label: 'My Articles', priority: 1 }
     end
     @@lazy_resource
   end
