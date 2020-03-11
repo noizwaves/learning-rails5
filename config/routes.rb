@@ -11,4 +11,12 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
+
+  namespace :admin, as: :admin do
+    resources :articles, only: [:index, :show, :destroy, :new, :create, :update, :edit] do
+      collection do
+        post :batch_action
+      end
+    end
+  end
 end
