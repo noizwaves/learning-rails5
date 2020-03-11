@@ -1,19 +1,3 @@
-# def load_resources_for_namespaces
-#   admin = ActiveAdmin.application.namespace(:admin)
-#
-#   resources = [ Admin::ArticlesResource.lazy_resource ]
-#
-#   # Following inspired by ActiveAdmin::Namespace.register(resource_class, options = {}, &block)
-#   resources.each do |r|
-#     admin.resources.add r
-#       # TODO: announce we did a thing?
-#     # ActiveSupport::Notifications.publish ActiveAdmin::Resource::RegisterEvent, config
-#   end
-#   admin.reset_menu!
-# end
-
-# load_resources_for_namespaces
-
 class MenuItem
   def initialize(id, label, url)
     @id = id
@@ -39,6 +23,22 @@ end
 admin = ActiveAdmin.application.namespace(:admin)
 admin.menus.on_build do
   menus = admin.menus
+
+  # WIP gemhack to print out all menu items
+  #             overrides = @menu_item_options.except(:id, :label, :url)
+  #             label =
+  #                   if @menu_item_options[:label].respond_to? :call
+  #                     @menu_item_options[:label].call
+  #                   else
+  #                     @menu_item_options[:label]
+  #                   end
+  #             url =
+  #                 if @menu_item_options[:url].respond_to? :call
+  #                   @menu_item_options[:url].call
+  #                 else
+  #                   @menu_item_options[:url]
+  #                 end
+  #             puts "menus.add :default, MenuItem.new('#{@menu_item_options[:id]}', '#{label}', '#{url}').options(#{overrides})"
 
   menus.add :default, MenuItem.new('articles', 'Articles', '/admin/articles').options({ label: 'My Articles', priority: 1 })
 end
